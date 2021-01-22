@@ -2,7 +2,7 @@
 Messing around with a pihole configuration using docker compose on a raspberry pi.
 
 The docker-compose.yml configuration is set up for a DHCP server to be run on pihole.
-Please to the following link for further documentation 
+Please refer to the following link for further documentation 
 https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 
 
