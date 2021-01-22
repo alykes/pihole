@@ -45,7 +45,7 @@ sudo docker-compose up --build --detach
 
 ```
 sudo docker stop pihole
-sudo docker rm pihole
-sudo docker pull pihole
-sudo docker run pihole
+sudo docker rm -f pihole
+sudo docker pull pihole:pihole
+sudo docker run <args> pihole
 ```
