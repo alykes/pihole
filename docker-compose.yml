@@ -1,6 +1,5 @@
 version: "3"
 
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
     container_name: pihole
@@ -16,12 +15,9 @@ services:
       TZ: 'Australia/Sydney'
       WEBPASSWORD: 'supersecretpassword'
       DNS1: '127.0.0.1'
-    # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
       - NET_BIND_SERVICE
