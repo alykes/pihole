@@ -36,12 +36,17 @@ sudo docker ps
 ```
 
 ### Additonal Infoz
-- If you modify the ```docker-compose.yml``` file, you will need to run the following command for the changes to take effect
+- If you modify the ```docker-compose.yml``` file, you will need to run the following command for the changes to take effect (If there is a new docker image available, it will also be updated!)
 ```
 sudo docker-compose up --build --detach
 ```
 
-- Updating to the latest docker pi-hole image can be achieved running the following commands (note: there will be some downtime)
+- Once there is a new pihole docker image built, you can update to the latest by running the following
+```
+sudo docker-compose up --build --detach
+```
+
+- Updating the pihole image without docker compose can be achieved by running the following commands (note: there will be some downtime)
 
 ```
 sudo docker stop pihole
