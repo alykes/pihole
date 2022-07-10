@@ -84,3 +84,5 @@ sudo apt-get install docker-compose -y
 
 ### Spin up pihole  
 
+Refer to the readme.md in the root of this repo  
+`sudo docker-compose up -d`
