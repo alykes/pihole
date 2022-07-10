@@ -1,9 +1,10 @@
-### Update the OS  
+## Update the OS  
+
 `sudo apt update`  
 `apt list --upgradeable`  
 `sudo apt full-upgrade`  
 
-### Create a new user
+## Create a new user
 
 - Log in with pi:raspberry and change the password of the default account
 `passwd`  
@@ -33,7 +34,7 @@ On your host machine create a key pair
 ssh-keygen -t ed25519 -a 777
 ssh-copy-id -i <public_key> <username>@<rpi_hostname>
 ```  
-If you are using putty, don't forget to convert the private key using puttygen  
+_Note: If you are using putty, don't forget to convert the private key using puttygen_  
 
 
 - Change sshd_conf on the Raspberry Pi
@@ -48,7 +49,9 @@ AllowGroups ssh-users
 - Reload sshd
 `sudo systemctl restart sshd`
 
-### Install Docker
+## Install Docker
+
+reference: https://docs.docker.com/engine/install/debian/  
 
 ```sudo apt-get update
 
