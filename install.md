@@ -5,16 +5,39 @@
 
 ### Create a new user
 
-Log in with pi:raspberry  
-Change the password  
+- Log in with pi:raspberry and change the password of the default account
 `passwd`  
 
-Add a new user  
+- Add a new user  
 `sudo adduser <username>`  
 `sudo adduser <username> sudo `  
 
-`sudo visudo`
+- Add the user to sudoers via visudo
+`sudo visudo`  
+- add the following:  
+`<user_name> ALL=(ALL:ALL) ALL`  
 
+diable the pi account  
+`sudo usermod --lock --expiredate 1 pi`
+
+## SSH Configuration
+
+- Add a user group  
+`sudo groupadd ssh-users`  
+- Add the current user to the group  
+`sudo usermod -a -G ssh-users $USER`  
+
+- Change sshd_conf
+```
+PermitRootLogin no
+PubkeyAuthentication yes
+PasswordAuthentication no
+UsePAM no
+X11Forwarding no
+AllowGroups ssh-users
+```
+- Reload sshd
+`sudo systemctl restart sshd`
 
 ### Install Docker
 
@@ -47,8 +70,5 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo apt-get install docker-compose -y
 ```
 
-### Change sshd_conf
-Reload it
-convert key to putty ppk
-
+### Spin up pihole  
 
