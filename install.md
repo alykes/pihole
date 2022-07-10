@@ -1,3 +1,21 @@
+### Update the OS  
+`sudo apt update`  
+`apt list --upgradeable`  
+`sudo apt full-upgrade`  
+
+### Create a new user
+
+Log in with pi:raspberry  
+Change the password  
+`passwd`  
+
+Add a new user  
+`sudo adduser <username>`  
+`sudo adduser <username> sudo `  
+
+`sudo visudo`
+
+
 ### Install Docker
 
 ```sudo apt-get update
@@ -29,14 +47,8 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo apt-get install docker-compose -y
 ```
 
-### Create a new user
+### Change sshd_conf
+Reload it
+convert key to putty ppk
 
-Log in with pi:raspberry  
-Change the password  
-`passwd`  
 
-Add a new user  
-`sudo adduser <username>`  
-`sudo adduser <username> sudo `  
-
-`sudo visudo`
