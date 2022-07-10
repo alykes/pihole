@@ -12,12 +12,12 @@
 `sudo adduser <username>`  
 `sudo adduser <username> sudo `  
 
-- Add the user to sudoers via visudo
+- Add the user to sudoers via visudo  
 `sudo visudo`  
 - add the following:  
 `<user_name> ALL=(ALL:ALL) ALL`  
 
-disable the pi account  
+- disable the pi account  
 `sudo usermod --lock --expiredate 1 pi`
 
 ## SSH Configuration
@@ -26,6 +26,7 @@ disable the pi account
 `sudo groupadd ssh-users`  
 - Add the current user to the group  
 `sudo usermod -a -G ssh-users $USER`  
+
 
 On your host machine create a key pair  
 ```
