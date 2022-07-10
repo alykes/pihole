@@ -17,7 +17,7 @@
 - add the following:  
 `<user_name> ALL=(ALL:ALL) ALL`  
 
-diable the pi account  
+disable the pi account  
 `sudo usermod --lock --expiredate 1 pi`
 
 ## SSH Configuration
@@ -27,7 +27,15 @@ diable the pi account
 - Add the current user to the group  
 `sudo usermod -a -G ssh-users $USER`  
 
-- Change sshd_conf
+On your host machine create a key pair  
+```
+ssh-keygen -t ed25519 -a 777
+ssh-copy-id -i <public_key> <username>@<rpi_hostname>
+```  
+If you are using putty, don't forget to convert the private key using puttygen  
+
+
+- Change sshd_conf on the Raspberry Pi
 ```
 PermitRootLogin no
 PubkeyAuthentication yes
