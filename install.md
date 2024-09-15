@@ -87,15 +87,3 @@ sudo apt-get install docker-compose -y
 Refer to the readme.md in the root of this repo  
 `sudo docker-compose up -d`  
 `sudo docker-compose up --build --detach --remove-orphans`  
-
-## Introducing cloudflared  
-Added cloudflared configuration to docker-compose.yaml  
-To use cloudflared as a proxy for DNS over HTTPs  
-
-### cloudflared and pihole set up  
-- Go into `settings -> dns` and in upstream servers enter `127.0.0.1#5053` and click save  
-- Test that you are now issuing DNS over HTTPs requests with the following link (https://one.one.one.one/help/)[https://one.one.one.one/help/]  
-  - You should see `Using DNS over HTTPS (DoH)	Yes`  
-
-### cloudflared tunnel configuration  
-- Will be adding this at some point...just not yet. :)  

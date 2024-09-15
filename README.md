@@ -55,3 +55,16 @@ sudo docker rm -f pihole
 sudo docker pull pihole:pihole
 sudo docker run <args> pihole
 ```
+
+## Introducing cloudflared  
+- Added cloudflared configuration to `docker-compose.yaml`  
+- To use cloudflared as a proxy for DNS over HTTPs (DoH)    
+
+## cloudflared and pihole set up  
+- Go into `settings -> dns` and in `upstream servers` enter `127.0.0.1#5053` and click `save`  
+- Don't forget to remove any ticked `Upstream DNS Servers`  
+- Test that you are now issuing DNS over HTTPs requests with the following link [https://one.one.one.one/help/](https://one.one.one.one/help/)  
+- You should see `Using DNS over HTTPS (DoH)	Yes`  
+
+## cloudflared tunnel configuration  
+Will be adding this at some point...just not yet. :)  
