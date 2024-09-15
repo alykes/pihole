@@ -1,9 +1,10 @@
 version: "3"
 
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole:2024.07.0
     network_mode: host
     ports:
       - "53:53/tcp"
@@ -13,12 +14,27 @@ services:
       - "443:443/tcp"
     environment:
       TZ: 'Australia/Sydney'
-      WEBPASSWORD: 'supersecretpassword'
-      DNS1: '127.0.0.1'
+      WEBPASSWORD: '<SUPER-SECRET-PASSWORD>'
+    # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
       - NET_ADMIN
       - NET_BIND_SERVICE
     restart: unless-stopped
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:2024.9.1
+    network_mode: host
+    command: proxy-dns
+    environment:
+      TUNNEL_DNS_UPSTREAM: 'https://1.1.1.1/dns-query,https://1.0.0.1/dns-query'
+      TUNNEL_DNS_PORT: 5053
+    ports:
+      - '5053:5053/udp'
+    restart: unless-stopped
+
