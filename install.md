@@ -97,5 +97,5 @@ Refer to the readme.md in the root of this repo
 
 ```bash
 sudo docker-compose up -d
-`sudo docker-compose up --build --detach --remove-orphans
+sudo docker-compose up --build --detach --remove-orphans
 ```
