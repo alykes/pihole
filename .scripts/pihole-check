@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# RED='\033[0;31m'
+# BOLD='\033[1m'
+# BOLD_YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m'
+
+# Fetching current pihole version
+echo "Fetching running Pi-hole version..."
+CURRENT_VERSION=$(sudo docker inspect --format='{{index .Config.Labels "org.opencontainers.image.version"}}' pihole)
+echo -e "Currently running Pi-hole version: ${YELLOW}$CURRENT_VERSION${NC}"
+
+# Fetching Available pihole versions
+echo "Fetching available Pi-hole versions..."
+AVAILABLE_VERSIONS=$(curl -s https://registry.hub.docker.com/v2/repositories/pihole/pihole/tags?page_size=100 | jq -r '.results[].name')
+echo "-----------------------------------------------"
+echo "Available Pi-hole versions: $AVAILABLE_VERSIONS"
+echo "-----------------------------------------------"
+
+# Comparing pihole versions
+echo "Comparing versions..."
+LATEST_VERSION=$(echo "$AVAILABLE_VERSIONS" | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+
+echo -e "Latest Pi-hole version: ${YELLOW}$LATEST_VERSION${NC}"
+
+if [ "$CURRENT_VERSION" != "$LATEST_VERSION" ]; then
+  echo -e "${YELLOW}Newer version found. Updating Pi-hole...${NC}"
+#  docker-compose down
+#  docker-compose pull pihole
+#  docker-compose up -d
+else
+  echo "======================"
+  echo -e "${GREEN}Pi-hole is up-to-date.${NC}"
+  echo "======================"
+fi
