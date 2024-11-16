@@ -1,5 +1,31 @@
 # Pi-hole
 
+Welcome to my project, this is a variation of a pihole deployment on a raspberry pi 4B. The deployment consists of the following docker containers:
+
+- pihole
+- cloudflared
+
+## Table Of Contents
+
+In this document:
+
+- [Pi-hole](#pi-hole)
+  - [Table Of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Requirements](#requirements)
+  - [Spin it up](#spin-it-up)
+    - [Additional Infoz](#additional-infoz)
+  - [Introducing cloudflared](#introducing-cloudflared)
+  - [cloudflared and pihole set up](#cloudflared-and-pihole-set-up)
+  - [cloudflared tunnel configuration](#cloudflared-tunnel-configuration)
+
+Links to other resources:
+
+- [Installation Guide](install.md)
+- [Repair Instructions](repair.md)
+
+## Introduction
+
 Messing around with a pihole configuration using docker compose on a raspberry pi.
 
 The docker-compose.yml configuration is set up for a DHCP server to be run on pihole.
@@ -8,7 +34,7 @@ Please refer to the following link for further documentation
 
 ## Requirements
 
-- Install Docker Compose
+- Install Docker Composee
 
 ```bash
 sudo apt-get -y install docker-compose
@@ -37,7 +63,7 @@ sudo docker-compose up -d
 sudo docker ps
 ```
 
-### Additonal Infoz
+### Additional Infoz
 
 - If you modify the ```docker-compose.yml``` file, you will need to run the following command for the changes to take effect
 
