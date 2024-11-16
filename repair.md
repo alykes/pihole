@@ -9,7 +9,7 @@ Create an image with the necessary binary *(sqlite3)* so that you don't have to 
 ### Sqlite3 Docker Image Build Steps
 
 Create a docker file to run sqlite3 from a container  
-> I do this so I don't have to install anything locally :wink:  
+> This is done so that you don't have to install anything locally :wink:  
 
 - Create a file named `Dockerfile`  
 
@@ -36,9 +36,9 @@ We will make a copy of the pihole-FTL.db before attempting any fix on the produc
 - Copy the database to a directory  
   - `cp ./etc-pihole/pihole-FTL.db ./backups/sql/pihole-FTL.db`
 
-## Check the database for consistency
+## Check the database integrity
 
-- Check the database for consistency issue  
+- Run the following command to check the integrity of the database  
   - `sudo docker run --rm -v /home/alykes/backups/sql:/db arm-sqlite /db/pihole-FTL.db "PRAGMA integrity_check;"`  
 
 - You will get something like the following:  
@@ -59,16 +59,19 @@ We will perform an SQL dump of the corrupted database so that we can attempt to 
   - `sudo docker run --rm -v /home/alykes/backups/sql:/db arm-sqlite /db/pihole-FTL.db .dump > /home/alykes/backups/sql/pihole-FTL.sql`
 
 > Expect the file to be larger than the original pihole-FTL.db size. We will use this file to construct a new database
+> Use `watch ls -alh` if you would like to see the progress of the file being generated
 
 ## Create a new database file
 
 To create a new database file, we will need to run sqlite3 and perform some commands at the `sqlite>` prompt
 
 - Run the container interactively
-  - `sudo docker run -it --rm -v /home/alykes/backups/sql:/db -v /home/alykes/backups/sql:/sql arm-sqlite /bin/bash`
+  - `sudo docker run -it --rm -v /home/alykes/backups/sql:/db arm-sqlite /bin/bash`
 - At the prompt enter the following commands  
   - Open a database for writing  
-    - `.open /db/new-sql.db`  
+    - `.open /db/new-sql.db`
+    - You may need to perform `sudo chmod 777 /home/alykes/backups/sql` if you receive a permission error as shown here `/db/new-sql.db": unable to open database file`
+    - This process may take a while :coffee:
   - To see that you have the database selected enter  
     - `.databases` - You should see the following line `main: /db/slq.db r/w`
   - Create the new database from the .sql file we created earlier  
@@ -78,6 +81,8 @@ To create a new database file, we will need to run sqlite3 and perform some comm
     - `SELECT COUNT(*) FROM queries;`  
   - Exit the sqlite prompt  
     - `.exit`  
+- Finally, check the integrity of the new database file with the following command
+  - `sudo docker run --rm -v /home/alykes/backups/sql:/db arm-sqlite /db/new-sql.db "PRAGMA integrity_check;"`  
 
 You now have an uncorrupted database file! :trophy:
 
@@ -86,7 +91,7 @@ You now have an uncorrupted database file! :trophy:
 - Move the existing pihole-FTL.db file  
   - `mv pihole-FTL.db pihole-FTL.corrupt`
 - Move the newly created database into etc-pihole  
-  - `mv /home/alykes/backups/sql/pihole-FTL.db /home/alykes/etc-pihole/pihole-FTL.db`
+  - `mv /home/alykes/backups/sql/new-sql.db /home/alykes/etc-pihole/pihole-FTL.db`
 
 ## Restart pihole
 
