@@ -1,5 +1,19 @@
 # How to repair the pihole-FTL.db
 
+<!-- TOC -->
+- [How to repair the pihole-FTL.db](#how-to-repair-the-pihole-ftldb)
+  - [Create an sqlite3 container](#create-an-sqlite3-container)
+    - [Sqlite3 Docker Image Build Steps](#sqlite3-docker-image-build-steps)
+  - [Make a copy of the database](#make-a-copy-of-the-database)
+    - [Stop the pihole container](#stop-the-pihole-container)
+    - [Backup the database](#backup-the-database)
+  - [Check the database integrity](#check-the-database-integrity)
+  - [Get an SQL dump of the corrupted database](#get-an-sql-dump-of-the-corrupted-database)
+  - [Create a new database file](#create-a-new-database-file)
+  - [Copy the file back into the etc-pihole directory](#copy-the-file-back-into-the-etc-pihole-directory)
+  - [Restart pihole](#restart-pihole)
+<!-- /TOC -->
+
 If the pihole-FTL.db becomes corrupted follow the steps below to try and recover the database  
 
 ## Create an sqlite3 container

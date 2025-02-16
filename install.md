@@ -1,6 +1,13 @@
 # Installation Instructions
 
-[[_TOC_]]
+<!-- TOC -->
+- [Installation Instructions](#installation-instructions)
+  - [Update the OS](#update-the-os)
+  - [Create a new user](#create-a-new-user)
+  - [SSH Configuration](#ssh-configuration)
+  - [Install Docker](#install-docker)
+    - [Spin up pihole](#spin-up-pihole)
+<!-- /TOC -->
 
 ## Update the OS
 

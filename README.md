@@ -9,6 +9,7 @@ Welcome to my project, this is a variation of a pihole deployment on a raspberry
 
 In this document:
 
+<!-- TOC -->
 - [Pi-hole](#pi-hole)
   - [Table Of Contents](#table-of-contents)
   - [Introduction](#introduction)
@@ -20,6 +21,7 @@ In this document:
   - [Introducing cloudflared](#introducing-cloudflared)
   - [cloudflared and pihole set up](#cloudflared-and-pihole-set-up)
   - [cloudflared tunnel configuration](#cloudflared-tunnel-configuration)
+<!-- /TOC -->
 
 Links to other resources:
 
