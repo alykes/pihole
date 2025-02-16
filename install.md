@@ -1,4 +1,8 @@
-# Update the OS
+# Installation Instructions
+
+[[_TOC_]]
+
+## Update the OS
 
 ```bash
 sudo apt update
@@ -41,7 +45,7 @@ ssh-keygen -t ed25519 -a 777
 ssh-copy-id -i <public_key> <username>@<rpi_hostname>
 ```
 
-_Note: If you are using putty, don't forget to convert the private key using puttygen_  
+> Note: If you are using putty, don't forget to convert the private key using puttygen  
 
 - Change sshd_conf on the Raspberry Pi
 

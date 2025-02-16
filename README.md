@@ -13,6 +13,8 @@ In this document:
   - [Table Of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Requirements](#requirements)
+    - [Install Docker](#install-docker)
+    - [Install Docker Compose](#install-docker-compose)
   - [Spin it up](#spin-it-up)
     - [Additional Infoz](#additional-infoz)
   - [Introducing cloudflared](#introducing-cloudflared)
@@ -34,7 +36,35 @@ Please refer to the following link for further documentation
 
 ## Requirements
 
-- Install Docker Composee
+Install Docker and Docker Composer
+
+### Install Docker
+
+```bash
+sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+
+```bash
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```  
+
+```bash
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+### Install Docker Compose
 
 ```bash
 sudo apt-get -y install docker-compose
@@ -49,7 +79,7 @@ cd /home/<user>/pihole
 
 ## Spin it up
 
-- Copy ```docker-compose.yml``` from the repo to the newly created directory ```cd /home/<user>/pihole```
+- Copy `docker-compose.yml` from the repo to the newly created directory `cd /home/<user>/pihole`
 
 - Spin up the container
   
@@ -65,7 +95,7 @@ sudo docker ps
 
 ### Additional Infoz
 
-- If you modify the ```docker-compose.yml``` file, you will need to run the following command for the changes to take effect
+- If you modify the `docker-compose.yml` file, you will need to run the following command for the changes to take effect
 
 ```bash
 sudo docker-compose up --build --detach
@@ -101,4 +131,4 @@ sudo docker run <args> pihole
 
 ## cloudflared tunnel configuration
 
-I will likely be adding this at some point...not just yet. :)
+I will likely be adding this at some point... :)
